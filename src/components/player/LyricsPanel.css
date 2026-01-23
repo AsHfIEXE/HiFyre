@@ -1,0 +1,204 @@
+/* Lyrics Panel - Karaoke Style */
+
+.lyrics-panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: transparent;
+    position: relative;
+}
+
+.lyrics-panel--fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    background: linear-gradient(135deg, #111 0%, #000 100%);
+}
+
+/* Header */
+.lyrics-panel__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4) var(--space-6);
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.lyrics-panel__header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--foreground);
+}
+
+.lyrics-panel__header-actions {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+}
+
+.lyrics-panel__toggle {
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    background: transparent;
+    color: var(--muted);
+    transition: all var(--transition-fast);
+    font-weight: 600;
+}
+
+.lyrics-panel__toggle:hover {
+    border-color: var(--foreground);
+    color: var(--foreground);
+}
+
+.lyrics-panel__toggle.active {
+    background: var(--foreground);
+    color: var(--background);
+    border-color: var(--foreground);
+}
+
+.lyrics-panel__close {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    padding: var(--space-2);
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+}
+
+.lyrics-panel__close:hover {
+    color: var(--foreground);
+    background: var(--card-hover);
+}
+
+/* Content */
+.lyrics-panel__content {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-8) var(--space-6) 120px;
+    scroll-behavior: smooth;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.lyrics-panel--fullscreen .lyrics-panel__content {
+    padding: var(--space-12) var(--space-8) 160px;
+    max-width: 900px;
+    margin: 0 auto;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+}
+
+/* Lines */
+.lyrics-panel__line {
+    margin-bottom: var(--space-8);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-align: left;
+    /* Karaoke style often left or center */
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-md);
+    opacity: 0.4;
+    transform-origin: left center;
+}
+
+.lyrics-panel--fullscreen .lyrics-panel__line {
+    text-align: center;
+    transform-origin: center center;
+    margin-bottom: var(--space-8);
+}
+
+.lyrics-panel__line:hover {
+    background: var(--card-hover);
+    opacity: 0.8;
+}
+
+.lyrics-panel__line-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Text sizing */
+.lyrics-panel__line-bg {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: inherit;
+}
+
+.lyrics-panel__line-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--foreground);
+    pointer-events: none;
+    width: 0%;
+    overflow: hidden;
+    white-space: nowrap;
+    /* This actually doesn't work perfectly for multi-line without word separation. 
+       Usually simple highlighting is active class. 
+       If we want true karaoke fill, we'd need word-by-word timing.
+       For now, we just highlight current active line fully. */
+    display: none;
+}
+
+/* Active line */
+.lyrics-panel__line.active {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.lyrics-panel__line.active .lyrics-panel__line-bg {
+    color: var(--foreground);
+}
+
+.lyrics-panel--fullscreen .lyrics-panel__line-bg {
+    font-size: 2.5rem;
+}
+
+.lyrics-panel--fullscreen .lyrics-panel__line.active {
+    transform: scale(1.1);
+}
+
+.lyrics-panel__line.active .lyrics-panel__line-bg {
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+/* Past lines */
+.lyrics-panel__line.past {
+    opacity: 0.6;
+}
+
+/* Translation */
+.lyrics-panel__translation {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-top: var(--space-2);
+    font-weight: 400;
+}
+
+.lyrics-panel--fullscreen .lyrics-panel__translation {
+    font-size: 1.25rem;
+}
+
+/* Footer */
+.lyrics-panel__footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-4);
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    background: transparent;
+    pointer-events: none;
+}

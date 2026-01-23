@@ -1,0 +1,87 @@
+/* Artist Card Styles */
+
+.artist-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-fast);
+}
+
+.artist-card:hover {
+    background: var(--surface-hover);
+}
+
+.artist-image-container {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.artist-card:hover .artist-image-container {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
+}
+
+.artist-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.artist-name {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    margin: 0 0 0.25rem 0;
+}
+
+.artist-label {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+}
+
+/* Skeleton */
+.artist-card.skeleton {
+    pointer-events: none;
+}
+
+.skeleton-box {
+    background: var(--surface-hover);
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+.artist-card.skeleton .artist-image-container {
+    border-radius: 50%;
+}
+
+.skeleton-name {
+    height: 16px;
+    width: 70%;
+    border-radius: var(--radius-sm);
+    margin-top: 0.5rem;
+}
+
+@keyframes skeleton-pulse {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}

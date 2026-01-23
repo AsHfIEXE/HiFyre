@@ -1,0 +1,56 @@
+/* Main Layout Grid */
+
+.app-layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    grid-template-rows: 1fr;
+    height: 100vh;
+    background: var(--background);
+    overflow: hidden;
+    position: relative;
+}
+
+.main-content {
+    background: var(--background);
+    flex: 1;
+    overflow-y: auto;
+    /* Allow scrolling here by default */
+    overflow-x: hidden;
+    position: relative;
+    scroll-behavior: smooth;
+    /* Create a separate layer for content vs nav */
+}
+
+/* Loading State */
+.layout-loading {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--background);
+    color: var(--accent);
+}
+
+/* Global scrollbar for the layout */
+.main-content *::-webkit-scrollbar {
+    width: 6px;
+}
+
+.main-content *::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.main-content *::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.main-content *::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+    .app-layout {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "instances": [
+        {
+            "name": "Monochrome (Main)",
+            "url": "https://monochrome-api.samidy.com",
+            "type": "api"
+        },
+        {
+            "name": "Squid",
+            "url": "https://triton.squid.wtf",
+            "type": "api"
+        }
+    ]
+}

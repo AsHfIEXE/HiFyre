@@ -1,0 +1,227 @@
+/* Track Card Premium Styles */
+
+.track-card {
+    display: grid;
+    /* Index | Cover | Title | Album | Actions | Duration */
+    grid-template-columns: 32px 48px 4fr 2fr auto 48px;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+    /* For glass sheen if needed */
+}
+
+.track-card:hover {
+    background: var(--card-hover);
+    transform: scale(1.005);
+}
+
+.track-card.active {
+    background: var(--card-active);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.track-card.compact {
+    grid-template-columns: 32px 1fr auto auto;
+    padding: var(--space-2) var(--space-3);
+}
+
+/* Index Column */
+.track-index {
+    width: 24px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.track-index span.playing {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.track-play-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    color: var(--foreground);
+    transition: color var(--transition-fast);
+}
+
+.track-play-btn:hover {
+    color: var(--accent);
+}
+
+/* Cover */
+.track-cover {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.compact .track-cover {
+    width: 40px;
+    height: 40px;
+}
+
+.track-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-fast);
+}
+
+.track-card:hover .track-cover img {
+    transform: scale(1.05);
+}
+
+.track-cover-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    border: none;
+    color: white;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.track-card:hover .track-cover-play,
+.track-card.active .track-cover-play {
+    opacity: 1;
+}
+
+/* Info */
+.track-info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.track-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--foreground);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.track-title.active {
+    color: var(--accent);
+}
+
+.explicit-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    font-size: 0.6rem;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--foreground);
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.track-artist {
+    font-size: 0.85rem;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-card:hover .track-artist {
+    color: var(--muted-foreground);
+}
+
+/* Album */
+.track-album {
+    font-size: 0.85rem;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+/* Actions */
+.track-actions {
+    display: flex;
+    gap: var(--space-2);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.track-card:hover .track-actions {
+    opacity: 1;
+}
+
+.track-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: var(--muted);
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+}
+
+.track-action-btn:hover {
+    color: var(--foreground);
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+.track-action-btn.active {
+    color: var(--accent);
+}
+
+/* Duration */
+.track-duration {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: right;
+    min-width: 45px;
+    font-variant-numeric: tabular-nums;
+    font-family: var(--font-mono);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .track-card {
+        grid-template-columns: 48px 1fr auto auto;
+    }
+
+    .track-index,
+    .track-album {
+        display: none;
+    }
+
+    .track-actions {
+        opacity: 1;
+        /* Always show actions on touch */
+    }
+}

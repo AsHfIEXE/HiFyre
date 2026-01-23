@@ -1,0 +1,134 @@
+/* Search Page Premium Styles */
+
+.search-bar-container {
+    margin-top: var(--space-6);
+    max-width: 600px;
+    position: relative;
+    z-index: 10;
+}
+
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0 var(--space-4);
+    transition: all var(--transition-fast);
+}
+
+.search-input-wrapper:hover {
+    background: var(--card-hover);
+    border-color: var(--border-hover);
+}
+
+.search-input-wrapper:focus-within {
+    border-color: var(--accent);
+    background: var(--card-active);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+.search-icon {
+    color: var(--muted);
+    margin-right: var(--space-3);
+    transition: color var(--transition-fast);
+}
+
+.search-input-wrapper:focus-within .search-icon {
+    color: var(--foreground);
+}
+
+.search-input {
+    flex: 1;
+    height: 52px;
+    background: transparent;
+    border: none;
+    color: var(--foreground);
+    font-size: 1.1rem;
+    font-weight: 500;
+    outline: none;
+    font-family: var(--font-body);
+}
+
+.search-input::placeholder {
+    color: var(--muted);
+    font-weight: 400;
+}
+
+/* Clear button refinement if we add one later */
+.search-clear {
+    color: var(--muted);
+    cursor: pointer;
+    padding: 4px;
+}
+
+.search-spinner {
+    color: var(--accent);
+    animation: spin 1s linear infinite;
+}
+
+/* Results Area */
+.search-results {
+    margin-top: var(--space-8);
+    animation: fadeIn 0.4s ease-out;
+}
+
+.search-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-16) 0;
+    color: var(--muted);
+    text-align: center;
+    opacity: 0.6;
+}
+
+.no-results {
+    text-align: center;
+    padding: var(--space-12) 0;
+    color: var(--muted);
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    border: 1px dashed var(--border);
+    margin-top: var(--space-8);
+}
+
+/* Section Styling */
+.results-section {
+    margin-bottom: var(--space-12);
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--foreground);
+}
+
+/* Animations */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

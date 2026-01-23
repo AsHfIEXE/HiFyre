@@ -1,0 +1,237 @@
+.queue-list-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-4);
+    overflow: hidden;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.queue-empty {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    gap: var(--space-2);
+}
+
+.queue-empty-sub {
+    font-size: 0.875rem;
+    opacity: 0.7;
+}
+
+.queue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+}
+
+.queue-header h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.queue-clear-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.queue-clear-btn:hover {
+    border-color: var(--accent-error);
+    color: var(--accent-error);
+}
+
+.queue-list {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: var(--space-2);
+}
+
+/* Scrollbar styling for queue list */
+.queue-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.queue-list::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+
+.queue-section {
+    margin-bottom: var(--space-6);
+}
+
+.queue-section h4 {
+    font-size: 0.875rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-2);
+}
+
+.queue-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: relative;
+}
+
+.queue-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.queue-item.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--highlight);
+}
+
+.queue-item.past {
+    opacity: 0.5;
+}
+
+.queue-item-cover {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.queue-item-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.queue-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.queue-item:hover .queue-item-overlay {
+    opacity: 1;
+}
+
+.queue-playing-indicator {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 8px;
+    gap: 2px;
+}
+
+.bar {
+    width: 3px;
+    background-color: var(--highlight);
+    border-radius: 2px;
+    animation: barBounce 1s infinite ease-in-out;
+}
+
+.n1 {
+    height: 12px;
+    animation-delay: 0s;
+}
+
+.n2 {
+    height: 16px;
+    animation-delay: 0.2s;
+}
+
+.n3 {
+    height: 10px;
+    animation-delay: 0.4s;
+}
+
+@keyframes barBounce {
+
+    0%,
+    100% {
+        transform: scaleY(1);
+    }
+
+    50% {
+        transform: scaleY(0.5);
+    }
+}
+
+.queue-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.queue-item-info .title {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9375rem;
+}
+
+.queue-item.active .title {
+    color: var(--highlight);
+}
+
+.queue-item-info .artist {
+    font-size: 0.8125rem;
+    color: var(--muted);
+}
+
+.queue-remove-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    opacity: 0;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.queue-remove-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--accent-error);
+}
+
+.queue-item:hover .queue-remove-btn {
+    opacity: 1;
+}
